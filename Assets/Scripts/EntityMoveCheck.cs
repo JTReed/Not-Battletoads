@@ -26,7 +26,7 @@ public class EntityMoveCheck : MonoBehaviour {
             //Handle walkables
             if (c.gameObject.walkable)
             {
-                transform 
+                transform = currentSpeed.x * c.gameObject.leftRightVec + currentSpeed.y * c.gameObject.upDownVec;
             }
             //Handle not walkables
             else
