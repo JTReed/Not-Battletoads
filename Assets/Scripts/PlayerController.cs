@@ -6,20 +6,26 @@ public class PlayerController : MonoBehaviour {
     public float acceleration;
     public float gravity;
     public float jumpSpeed;
+    public Transform punchCollider;
 
     private Vector3 currentSpeed;
     private Vector3 targetSpeed;
+    private float punchStartTime;
+    private float punchDuration = .5f;
 
     private bool jump;
+    private bool punching;
 
     private Transform spriteTransform;
     private CharacterController charControl;
+    private Animator animator;
 
 	// Use this for initialization
 	void Start () {
         charControl = GetComponent<CharacterController>();
-        currentSpeed = Vector3.zero;
         spriteTransform = transform.FindChild("Sprite");
+        animator = spriteTransform.GetComponent<Animator>();
+        currentSpeed = Vector3.zero;
 	}
 	
 	// Update is called once per frame
@@ -49,6 +55,21 @@ public class PlayerController : MonoBehaviour {
 
 
         charControl.Move(currentSpeed * Time.deltaTime);
+
+        // handle punching
+        if (!punching) {
+            if (Input.GetButtonDown("Punch")) {
+                punching = true;
+                animator.SetBool("Punching", true);
+                punchStartTime = Time.time;
+            }
+        }
+        else {
+            if (Time.time - punchStartTime >= punchDuration) {
+                punching = false;
+                animator.SetBool("Punching", false);
+            }
+        }
 	}
 
     float MoveToward(float curr, float targ, float accel)
