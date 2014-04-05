@@ -2,14 +2,14 @@
 using System.Collections;
 
 public class GameManager : MonoBehaviour {
+    public GameObject player;
+    private GameCamera camera;
 
 	// Use this for initialization
 	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
+        camera = GetComponent<GameCamera>();
+        Object clone = Instantiate(player, new Vector3(0, 5, 0), Quaternion.identity);
+        camera.SetTarget((clone as GameObject).transform);
+
 	}
 }

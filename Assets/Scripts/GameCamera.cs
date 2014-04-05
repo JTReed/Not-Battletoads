@@ -3,7 +3,8 @@ using System.Collections;
 
 public class GameCamera : MonoBehaviour {
 
-	public GameObject player;
+	private Transform target;
+
 	// Use this for initialization
 	void Start () {
 		
@@ -16,7 +17,14 @@ public class GameCamera : MonoBehaviour {
 	
 	//do cam movement late!
 	void LateUpdate(){
-        //set camera for player's X position, keep previous y/z position.
-		transform.position = new Vector3(player.transform.position.x, transform.position.y, transform.position.z);
+        if (target != null) {
+            //set camera for player's X position, keep previous y/z position.
+            transform.position = new Vector3(target.position.x, transform.position.y, transform.position.z);
+        }
 	}
+
+    public void SetTarget(Transform t)
+    {
+        target = t;
+    }
 }
