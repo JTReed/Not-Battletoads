@@ -6,6 +6,7 @@ public class PlayerController : MonoBehaviour {
     public float acceleration;
     public float gravity;
     public float jumpSpeed;
+
     private Vector3 currentSpeed;
     private Vector3 targetSpeed;
     private CharacterController charControl;
@@ -13,18 +14,12 @@ public class PlayerController : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-
         charControl = GetComponent<CharacterController>();
         currentSpeed = Vector3.zero;
 	}
 	
 	// Update is called once per frame
 	void Update () {
-
-
-        Vector3 targetSpeed = new Vector3(Input.GetAxisRaw("Horizontal") * speed, 0, Input.GetAxisRaw("Vertical") * speed);
-        currentSpeed.x = MoveToward(currentSpeed.x, targetSpeed.x, acceleration);
-        currentSpeed.z = MoveToward(currentSpeed.z, targetSpeed.z, acceleration);
 
         //handle jump
         if (charControl.isGrounded) {
@@ -37,6 +32,17 @@ public class PlayerController : MonoBehaviour {
             //handle gravity
             currentSpeed.y -= gravity * Time.deltaTime;
         }
+
+        Vector3 targetSpeed = new Vector3(Input.GetAxisRaw("Horizontal") * speed, 0, Input.GetAxisRaw("Vertical") * speed);
+        currentSpeed.x = MoveToward(currentSpeed.x, targetSpeed.x, acceleration);
+        currentSpeed.z = MoveToward(currentSpeed.z, targetSpeed.z, acceleration);
+
+        float facing = Mathf.Sign(Input.GetAxisRaw("Horizontal"));
+        if (targetSpeed.x != 0) {
+            // flip character sprite if going left
+            transform.eulerAngles = (facing < 0) ? (Vector3.up * 180) + (Vector3.right * 270) : Vector3.zero;
+        }
+
 
         charControl.Move(currentSpeed * Time.deltaTime);
 	}
