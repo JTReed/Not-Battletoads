@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class CharacterControllr : MonoBehaviour {
+public class CharacterController : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
