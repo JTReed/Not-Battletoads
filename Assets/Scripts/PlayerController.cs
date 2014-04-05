@@ -44,7 +44,6 @@ public class PlayerController : MonoBehaviour {
         float facing = Mathf.Sign(Input.GetAxisRaw("Horizontal"));
         if (targetSpeed.x != 0) {
             // flip character sprite if going left
-            //transform.eulerAngles = (facing < 0) ? (Vector3.up * 180) + (Vector3.right * 270) : Vector3.zero;
             spriteTransform.eulerAngles = (facing < 0) ? (Vector3.up * 180) + (Vector3.right * 315) : Vector3.right * 45;
         }
 
