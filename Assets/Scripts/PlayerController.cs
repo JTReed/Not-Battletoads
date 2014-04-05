@@ -14,7 +14,7 @@ public class PlayerController : MonoBehaviour {
     private float punchStartTime;
     private float punchDuration = .4f;
 
-    private bool jump;
+    private bool jumping;
     private bool punching;
 
     private LayerMask attackLayerMask;
@@ -43,10 +43,11 @@ public class PlayerController : MonoBehaviour {
         //handle jump
         if (charControl.isGrounded) {
             animator.SetBool("Jumping", false);
-            currentSpeed.y = 0;
+            //currentSpeed.y = 0;
             if (Input.GetButtonDown("Jump")) {
+                Debug.Log("should jump now");
                 animator.SetBool("Jumping", true);
-                currentSpeed.y += jumpSpeed;
+                currentSpeed.y = jumpSpeed;
             }
         }
         else {
@@ -59,7 +60,7 @@ public class PlayerController : MonoBehaviour {
         currentSpeed.z = MoveToward(currentSpeed.z, targetSpeed.z, acceleration);
 
         // handle punching
-        if (!punching) {
+        if (!punching && !jumping) {
             if (Input.GetButtonDown("Punch")) {
 
                 punching = true;
