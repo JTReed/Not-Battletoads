@@ -44,12 +44,12 @@ public class EnemyController : MonoBehaviour {
             currentSpeed.y -= gravity * Time.deltaTime;
         }
 
-        Vector3 targetSpeed;
+        Vector3 targetSpeed = Vector3.zero;
         switch(mood) {
             case 0: 
                 targetSpeed = new Vector3(-speed, 0, 0);
                 //need to check for player character set mood if close
-                if(playerTransform != null && (moodTime < 6.0f) && ((playerTransform - transform).magnitude < 4.0f)) {
+                if(playerTransform != null && (moodTime < 6.0f) && ((playerTransform.position - transform.position).magnitude < 4.0f)) {
                     mood = 2;
                     moodTime = 3.0f;
                     break;
@@ -61,7 +61,8 @@ public class EnemyController : MonoBehaviour {
             case 1:
                 targetSpeed = new Vector3(speed, 0, 0);
                 //need to check for player character set mood if close
-                if(playerTransform != null && (moodTime < 6.0f) && ((playerTransform - transform).magnitude < 4.0f)) {
+                if (playerTransform != null && (moodTime < 6.0f) && ((playerTransform.position - transform.position).magnitude < 4.0f))
+                {
                     mood = 2;
                     moodTime = 3.0f;
                     break;
@@ -71,7 +72,7 @@ public class EnemyController : MonoBehaviour {
                     mood = 1;
                 break;
             case 2:
-                targetSpeed = normalize(playerTransform - transform);
+                targetSpeed = (playerTransform.position - transform.position).normalized;
                 moodTime -= Time.deltaTime;
                 if(moodTime < 0.0f)
                     mood = 0;
