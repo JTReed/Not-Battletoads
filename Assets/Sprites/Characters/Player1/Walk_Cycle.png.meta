@@ -24,13 +24,13 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     filterMode: -1
-    aniso: -1
+    aniso: 1
     mipBias: -1
-    wrapMode: -1
+    wrapMode: 1
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -44,6 +44,60 @@ TextureImporter:
     textureFormat: -2
     compressionQuality: 50
   spriteSheet:
-    sprites: []
+    sprites:
+    - name: Walk_Cycle_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 15
+        width: 209
+        height: 467
+      alignment: 9
+      pivot: {x: .743739009, y: .5}
+    - name: Walk_Cycle_1
+      rect:
+        serializedVersion: 2
+        x: 271
+        y: 11
+        width: 137
+        height: 471
+      alignment: 9
+      pivot: {x: .661680102, y: .5}
+    - name: Walk_Cycle_2
+      rect:
+        serializedVersion: 2
+        x: 454
+        y: 17
+        width: 241
+        height: 465
+      alignment: 9
+      pivot: {x: .648380995, y: .5}
+    - name: Walk_Cycle_3
+      rect:
+        serializedVersion: 2
+        x: 738
+        y: 9
+        width: 190
+        height: 473
+      alignment: 9
+      pivot: {x: .73268944, y: .5}
+    - name: Walk_Cycle_4
+      rect:
+        serializedVersion: 2
+        x: 973
+        y: 2
+        width: 134
+        height: 477
+      alignment: 9
+      pivot: {x: .765532076, y: .5}
+    - name: Walk_Cycle_5
+      rect:
+        serializedVersion: 2
+        x: 1151
+        y: 0
+        width: 234
+        height: 476
+      alignment: 9
+      pivot: {x: .606067121, y: .5}
   spritePackingTag: 
   userData: 

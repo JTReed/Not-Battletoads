@@ -49,20 +49,20 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 13
+        y: 12
         width: 249
         height: 479
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
     - name: Punch Cycle_1
       rect:
         serializedVersion: 2
         x: 263
-        y: 4
+        y: 3
         width: 240
         height: 489
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
     - name: Punch Cycle_2
       rect:
         serializedVersion: 2
@@ -70,8 +70,8 @@ TextureImporter:
         y: 0
         width: 318
         height: 495
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: .30114457, y: .494848073}
     - name: Punch Cycle_3
       rect:
         serializedVersion: 2
@@ -80,6 +80,6 @@ TextureImporter:
         width: 185
         height: 487
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
   spritePackingTag: 
   userData: 
