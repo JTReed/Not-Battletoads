@@ -5,22 +5,24 @@ public class CharacterController : MonoBehaviour {
     public float speed;
     public float acceleration;
 
-    private Vector2 currentSpeed;
-    private Vector2 targetSpeed;
+    private Vector3 currentSpeed;
+    private Vector3 targetSpeed;
+
+    private bool jump;
 
     // private floor collider?
 
 	// Use this for initialization
 	void Start () {
-        currentSpeed = Vector2.zero;
+        currentSpeed = Vector3.zero;
 	}
 	
 	// Update is called once per frame
 	void Update () {
 
-        Vector2 targetSpeed = new Vector2(Input.GetAxisRaw("Horizontal") * speed, Input.GetAxisRaw("Vertical") * speed);
+        Vector3 targetSpeed = new Vector3(Input.GetAxisRaw("Horizontal") * speed, 0, Input.GetAxisRaw("Vertical") * speed);
         currentSpeed.x = MoveToward(currentSpeed.x, targetSpeed.x, acceleration);
-        currentSpeed.y = MoveToward(currentSpeed.y, targetSpeed.y, acceleration);
+        currentSpeed.z = MoveToward(currentSpeed.z, targetSpeed.z, acceleration);
 
         transform.Translate(currentSpeed);
 	}
