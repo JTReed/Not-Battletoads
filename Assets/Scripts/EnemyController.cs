@@ -46,6 +46,7 @@ public class EnemyController : MonoBehaviour {
 
         Vector3 targetSpeed = Vector3.zero;
         switch(mood) {
+                //move right
             case 0: 
                 targetSpeed = new Vector3(-speed, 0, 0);
                 //need to check for player character set mood if close
@@ -61,6 +62,7 @@ public class EnemyController : MonoBehaviour {
                     mood = 1;
                 }
                 break;
+                //move left
             case 1:
                 targetSpeed = new Vector3(speed, 0, 0);
                 //need to check for player character set mood if close
@@ -77,6 +79,7 @@ public class EnemyController : MonoBehaviour {
                     mood = 0;
                 }
                 break;
+                //chase player!
             case 2:
                 targetSpeed = speed * (playerTransform.position - transform.position).normalized;
                 moodTime -= Time.deltaTime;
@@ -93,8 +96,8 @@ public class EnemyController : MonoBehaviour {
 
         float facing = Mathf.Sign(targetSpeed.x);
         if (targetSpeed.x != 0) {
-            // flip character sprite if going left
-            spriteTransform.eulerAngles = (facing < 0) ? (Vector3.up * 180) + (Vector3.right * 315) : Vector3.right * 45;
+            // flip character sprite if going right
+            spriteTransform.eulerAngles = (facing > 0) ? (Vector3.up * 180) + (Vector3.right * 315) : Vector3.right * 45;
         }
 
 
