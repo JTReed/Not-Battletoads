@@ -56,7 +56,10 @@ public class EnemyController : MonoBehaviour {
                 }
                 moodTime -= Time.deltaTime;
                 if (moodTime < 0.0f)
+                {
+                    moodTime = 10.0f;
                     mood = 1;
+                }
                 break;
             case 1:
                 targetSpeed = new Vector3(speed, 0, 0);
@@ -69,20 +72,26 @@ public class EnemyController : MonoBehaviour {
                 }
                 moodTime -= Time.deltaTime;
                 if (moodTime < 0.0f)
-                    mood = 1;
+                {
+                    moodTime = 10.0f;
+                    mood = 0;
+                }
                 break;
             case 2:
                 targetSpeed = (playerTransform.position - transform.position).normalized;
                 moodTime -= Time.deltaTime;
-                if(moodTime < 0.0f)
+                if (moodTime < 0.0f)
+                {
+                    moodTime = 10.0f;
                     mood = 0;
+                }
                 break;
         }
         //Vector3 targetSpeed = new Vector3(Input.GetAxisRaw("Horizontal") * speed, 0, Input.GetAxisRaw("Vertical") * speed);
         currentSpeed.x = MoveToward(currentSpeed.x, targetSpeed.x, acceleration);
         currentSpeed.z = MoveToward(currentSpeed.z, targetSpeed.z, acceleration);
 
-        float facing = Mathf.Sign(Input.GetAxisRaw("Horizontal"));
+        float facing = Mathf.Sign(targetSpeed.x);
         if (targetSpeed.x != 0) {
             // flip character sprite if going left
             spriteTransform.eulerAngles = (facing < 0) ? (Vector3.up * 180) + (Vector3.right * 315) : Vector3.right * 45;
