@@ -26,11 +26,17 @@ public class PlayerController : MonoBehaviour {
         currentSpeed.x = MoveToward(currentSpeed.x, targetSpeed.x, acceleration);
         currentSpeed.z = MoveToward(currentSpeed.z, targetSpeed.z, acceleration);
 
-        //handle gravity
-        currentSpeed.y -= gravity;
         //handle jump
-        if (charControl.isGrounded && Input.GetButtonDown("Jump"))
-            currentSpeed.y += jumpSpeed;
+        if (charControl.isGrounded) {
+            currentSpeed.y = 0;
+            if (Input.GetButtonDown("Jump")) {
+                currentSpeed.y += jumpSpeed;
+            }
+        }
+        else {
+            //handle gravity
+            currentSpeed.y -= gravity * Time.deltaTime;
+        }
 
         charControl.Move(currentSpeed * Time.deltaTime);
 	}
