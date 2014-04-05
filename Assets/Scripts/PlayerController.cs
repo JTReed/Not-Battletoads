@@ -9,13 +9,17 @@ public class PlayerController : MonoBehaviour {
 
     private Vector3 currentSpeed;
     private Vector3 targetSpeed;
-    private CharacterController charControl;
+
     private bool jump;
+
+    private Transform spriteTransform;
+    private CharacterController charControl;
 
 	// Use this for initialization
 	void Start () {
         charControl = GetComponent<CharacterController>();
         currentSpeed = Vector3.zero;
+        spriteTransform = transform.FindChild("Sprite");
 	}
 	
 	// Update is called once per frame
@@ -40,7 +44,8 @@ public class PlayerController : MonoBehaviour {
         float facing = Mathf.Sign(Input.GetAxisRaw("Horizontal"));
         if (targetSpeed.x != 0) {
             // flip character sprite if going left
-            transform.eulerAngles = (facing < 0) ? (Vector3.up * 180) + (Vector3.right * 270) : Vector3.zero;
+            //transform.eulerAngles = (facing < 0) ? (Vector3.up * 180) + (Vector3.right * 270) : Vector3.zero;
+            spriteTransform.eulerAngles = (facing < 0) ? (Vector3.up * 180) + (Vector3.right * 315) : Vector3.right * 45;
         }
 
 
