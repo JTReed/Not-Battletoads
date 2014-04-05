@@ -16,17 +16,13 @@ public class PlayerController : MonoBehaviour {
 
     private bool jumping;
     private bool punching;
+    private bool hitEnemy;
 
-    private LayerMask attackLayerMask;
+    private LayerMask attackLayerMask = 8 << 1;
 
     private Transform spriteTransform;
     private CharacterController charControl;
     private Animator animator;
-
-    void Awake()
-    {
-        attackLayerMask = LayerMask.NameToLayer("Enemy") << 1;
-    }
 
 	// Use this for initialization
 	void Start () {
@@ -71,13 +67,18 @@ public class PlayerController : MonoBehaviour {
             if (Time.time - punchStartTime >= punchDuration) {
                 punching = false;
                 animator.SetBool("Punching", false);
+                hitEnemy = false;
             }
-            else {
+            else if(!hitEnemy) {
                 currentSpeed = Vector3.zero;
                 RaycastHit hit;
-                Debug.DrawRay(transform.position + new Vector3(0, transform.position.y / 2.0f, 0), fwdVector * 1.5f, Color.red);
-                if (Physics.Raycast(transform.position + new Vector3(0, transform.position.y / 2.0f, 0), fwdVector, out hit, 1.5f, attackLayerMask)) {
-                    Debug.Log("punched enemy yeah!!");
+                Debug.DrawRay(transform.position + new Vector3(0, transform.position.y / 2.0f, 0), fwdVector * 3f, Color.red);
+                if (Physics.Raycast(transform.position + new Vector3(0, transform.position.y / 2.0f, 0), fwdVector, out hit, 3f)) {
+                    if (hit.collider.tag == "Enemy") {
+                        hitEnemy = true;
+                        hit.transform.GetComponent<Entity>().TakeDamage(1);
+                        Debug.Log("punched enemy yeah!!");
+                    }
                 }
             }
         }
