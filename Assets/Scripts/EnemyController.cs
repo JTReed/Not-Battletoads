@@ -49,40 +49,40 @@ public class EnemyController : MonoBehaviour {
             case 0: 
                 targetSpeed = new Vector3(-speed, 0, 0);
                 //need to check for player character set mood if close
-                if(playerTransform != null && (moodTime < 6.0f) && ((playerTransform.position - transform.position).magnitude < 4.0f)) {
+                if(playerTransform != null && (moodTime < 2.0f) && ((playerTransform.position - transform.position).magnitude < 4.0f)) {
                     mood = 2;
-                    moodTime = 3.0f;
+                    moodTime = 2.0f;
                     break;
                 }
                 moodTime -= Time.deltaTime;
                 if (moodTime < 0.0f)
                 {
-                    moodTime = 10.0f;
+                    moodTime = 3.0f;
                     mood = 1;
                 }
                 break;
             case 1:
                 targetSpeed = new Vector3(speed, 0, 0);
                 //need to check for player character set mood if close
-                if (playerTransform != null && (moodTime < 6.0f) && ((playerTransform.position - transform.position).magnitude < 4.0f))
+                if (playerTransform != null && (moodTime < 2.0f) && ((playerTransform.position - transform.position).magnitude < 4.0f))
                 {
                     mood = 2;
-                    moodTime = 3.0f;
+                    moodTime = 2.0f;
                     break;
                 }
                 moodTime -= Time.deltaTime;
                 if (moodTime < 0.0f)
                 {
-                    moodTime = 10.0f;
+                    moodTime = 3.0f;
                     mood = 0;
                 }
                 break;
             case 2:
-                targetSpeed = (playerTransform.position - transform.position).normalized;
+                targetSpeed = speed * (playerTransform.position - transform.position).normalized;
                 moodTime -= Time.deltaTime;
                 if (moodTime < 0.0f)
                 {
-                    moodTime = 10.0f;
+                    moodTime = 2.0f;
                     mood = 0;
                 }
                 break;
