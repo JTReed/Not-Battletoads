@@ -43,7 +43,6 @@ public class PlayerController : MonoBehaviour {
         //handle jump
         if (charControl.isGrounded) {
             animator.SetBool("Jumping", false);
-            //currentSpeed.y = 0;
             if (Input.GetButtonDown("Jump")) {
                 Debug.Log("should jump now");
                 animator.SetBool("Jumping", true);
@@ -60,9 +59,8 @@ public class PlayerController : MonoBehaviour {
         currentSpeed.z = MoveToward(currentSpeed.z, targetSpeed.z, acceleration);
 
         // handle punching
-        if (!punching && !jumping) {
-            if (Input.GetButtonDown("Punch")) {
-
+        if (!punching) {
+            if (Input.GetButtonDown("Punch") && charControl.isGrounded) {
                 punching = true;
                 currentSpeed = Vector3.zero;
                 animator.SetBool("Punching", true);
@@ -98,31 +96,7 @@ public class PlayerController : MonoBehaviour {
             fwdVector = (facing < 0) ? Vector3.left : Vector3.right;
         }
 
-
         charControl.Move(currentSpeed * Time.deltaTime);
-
-        // handle punching
-        if (!punching) {
-            if (Input.GetButtonDown("Punch")) {
-
-                punching = true;
-                animator.SetBool("Punching", true);
-                punchStartTime = Time.time;
-            }
-        }
-        else {
-            if (Time.time - punchStartTime >= punchDuration) {
-                punching = false;
-                animator.SetBool("Punching", false);
-            }
-            else {
-                RaycastHit hit;
-                Debug.DrawRay(transform.position + new Vector3(0, transform.position.y / 2.0f, 0), fwdVector * 1.5f, Color.red);
-                if (Physics.Raycast(transform.position + new Vector3(0, transform.position.y / 2.0f, 0), fwdVector, out hit, 1.5f, attackLayerMask)) {
-                    Debug.Log("punched enemy yeah!!");
-                }
-            }
-        }
 	}
 
     float MoveToward(float curr, float targ, float accel)
