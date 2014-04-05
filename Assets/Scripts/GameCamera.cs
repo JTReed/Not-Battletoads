@@ -16,6 +16,7 @@ public class GameCamera : MonoBehaviour {
 	
 	//do cam movement late!
 	void LateUpdate(){
+        //set camera for player's X position, keep previous y/z position.
 		transform.position = new Vector3(player.transform.position.x, transform.position.y, transform.position.z);
 	}
 }
