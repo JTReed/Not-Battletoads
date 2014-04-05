@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-[RequireComponent(typeof(EntityMoveCheck))]
 public class CharacterController : MonoBehaviour {
     public float speed;
     public float acceleration;
@@ -10,8 +9,6 @@ public class CharacterController : MonoBehaviour {
     private Vector3 targetSpeed;
 
     private bool jump;
-
-    // private floor collider?
 
 	// Use this for initialization
 	void Start () {
@@ -24,6 +21,8 @@ public class CharacterController : MonoBehaviour {
         Vector3 targetSpeed = new Vector3(Input.GetAxisRaw("Horizontal") * speed, 0, Input.GetAxisRaw("Vertical") * speed);
         currentSpeed.x = MoveToward(currentSpeed.x, targetSpeed.x, acceleration);
         currentSpeed.z = MoveToward(currentSpeed.z, targetSpeed.z, acceleration);
+
+        transform.Translate(currentSpeed);
 
 	}
 
