@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+[RequireComponent(typeof(EntityMoveCheck))]
 public class CharacterController : MonoBehaviour {
     public float speed;
     public float acceleration;
@@ -22,7 +23,6 @@ public class CharacterController : MonoBehaviour {
         currentSpeed.x = MoveToward(currentSpeed.x, targetSpeed.x, acceleration);
         currentSpeed.y = MoveToward(currentSpeed.y, targetSpeed.y, acceleration);
 
-        transform.Translate(currentSpeed);
 	}
 
     float MoveToward(float curr, float targ, float accel)
