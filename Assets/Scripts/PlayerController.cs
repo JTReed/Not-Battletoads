@@ -7,12 +7,15 @@ public class PlayerController : MonoBehaviour {
     public float gravity;
     public float jumpSpeed;
     public Transform punchCollider;
+    public GUIText scoretext;
 
     private Vector3 currentSpeed;
     private Vector3 targetSpeed;
     private Vector3 fwdVector;
     private float punchStartTime;
     private float punchDuration = .4f;
+    private int score;
+
 
     private bool jumping;
     private bool punching;
@@ -31,10 +34,17 @@ public class PlayerController : MonoBehaviour {
         animator = spriteTransform.GetComponent<Animator>();
         fwdVector = Vector3.right;
         currentSpeed = Vector3.zero;
+        score = 0;
+        if(scoretext != null)
+        scoretext.text = "Score: " + score;
 	}
 	
 	// Update is called once per frame
 	void Update () {
+
+        //update scoretext
+        if(scoretext != null)
+        scoretext.text = "Score: " + score;
 
         //handle jump
         if (charControl.isGrounded) {
@@ -72,12 +82,13 @@ public class PlayerController : MonoBehaviour {
             else if(!hitEnemy) {
                 currentSpeed = Vector3.zero;
                 RaycastHit hit;
-                Debug.DrawRay(transform.position + new Vector3(0, transform.position.y / 2.0f, 0), fwdVector * 3f, Color.red);
+                //Debug.DrawRay(transform.position + new Vector3(0, transform.position.y / 2.0f, 0), fwdVector * 3f, Color.red);
                 if (Physics.Raycast(transform.position + new Vector3(0, transform.position.y / 2.0f, 0), fwdVector, out hit, 3f)) {
                     if (hit.collider.tag == "Enemy") {
                         hitEnemy = true;
                         hit.transform.GetComponent<Entity>().TakeDamage(1);
                         Debug.Log("punched enemy yeah!!");
+                        score++;
                     }
                 }
             }
