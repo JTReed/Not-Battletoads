@@ -1,10 +1,9 @@
 Not-Battletoads
 ===============
-*By Jackson Reed (JTReed) and Nick Ingrassia (ningrassia) with art by Andrew Olson
+*By Jackson Reed (JTReed) and Nick Ingrassia (ningrassia) with art by Andrew Olson*
 
 
 **A beat 'em up game in Unity that started as an attempted "remake" of Battletoads for the NES**
----------------
 
 Made in 24 hours at UW Madison's Game Jam 2014 and selected selected as Raven Software's "second place" game at the jam. 
 
