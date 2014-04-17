@@ -11,4 +11,4 @@ Controls:
 - Space to jump
 - Z to punch
 
-[LINK TO UNITY PROJECT ON DROPBOX](https://dl.dropboxusercontent.com/u/15935800/Unity%20Web%20Player%20Games/MadisonGameJam2014_BeatEmUp/MadisonGameJam2014_BeatEmUp.html) (Requires Unity Web Player)
+[PLAY IN BROWSER](https://dl.dropboxusercontent.com/u/15935800/Unity%20Web%20Player%20Games/MadisonGameJam2014_BeatEmUp/MadisonGameJam2014_BeatEmUp.html) (Requires Unity Web Player)
